@@ -2,173 +2,87 @@
   Variables
 ***************************************************** */
 // Alert Notification Banner
-const alert = document.getElementById('notification');
+const alertMessage = document.getElementById('notification');
 const closeIcon = document.querySelector('.close-icon');
 // Projects list UL
+const projectList = document.getElementById('projectList');
 
-// Project form elements - contents of which I need to append to above
+// Project form elements
 const projectNameInput = document.getElementById('projectName');
 const projectHTMLCheckbox = document.getElementById('html');
 const projectCSSCheckbox = document.getElementById('css');
 const projectJSCheckbox = document.getElementById('js');
-const addProjectButton = document.getElementById('addProjectButton');
 const projectDetailsInput = document.getElementById('projectDetails');
-
-function createNewListItem(name, details) {
-    //declarations
-    const projectUL = document.querySelector('.projects');
-    //create li
-    const mainli = document.createElement('li');
-    mainli.classList.add('project');
-    //create header div
-    const projectDiv = document.createElement('div');
-    projectDiv.classList = 'project-header flex';
-    //creat h3
-    const header_3 = document.createElement('h3');
-    header_3.classList.add('project-name');
-    header_3.textContent = name;
-    // create image
-    const img = document.createElement('img');
-    img.classList = 'plus-icon pointer';
-    img.src = 'icons/plus-icon.svg';
-    img.alt = 'Plus Icon Expand Details';
-    // create ul and li children
-    const ul = document.createElement('ul');
-    ul.classList = 'project-langs flex';
-    // create HTML icon
-    const li_1 = document.createElement('li');
-    li_1.classList.add('project-lang');
-    const li_image_1 = document.createElement('img');
-    li_image_1.classList.add('html');
-    li_image_1.src = 'icons/html5.svg';
-    li_image_1.alt = 'HTML 5 Logo';
-    // create css icon
-    const li_2 = document.createElement('li');
-    li_2.classList.add('project-lang');
-    const li_image_2 = document.createElement('img');
-    li_image_2.classList.add('css');
-    li_image_2.src = 'icons/css3.svg';
-    li_image_2.alt = 'CSS3 Logo'
-    // create js icon
-    const li_3 = document.createElement('li');
-    li_3.classList.add('project-lang');
-    const li_image_3 = document.createElement('img');
-    li_image_3.classList.add('js');
-    li_image_3.src = 'icons/javascript.svg';
-    li_image_3.alt = 'JavaScript Logo';
-    // create project details
-    const text = document.createElement('p');
-    text.classList = 'project-info hidden';
-    text.textContent = details;
-    //appending elements
-    //append li images to li
-    li_1.appendChild(li_image_1);
-    li_2.appendChild(li_image_2);
-    li_3.appendChild(li_image_3);
-    //appending li's to UL
-    ul.appendChild(li_1);
-    ul.appendChild(li_2);
-    ul.appendChild(li_3);
-    //appending children of projectDiv to projectDiv
-    projectDiv.appendChild(header_3);
-    projectDiv.appendChild(img);
-    projectDiv.appendChild(ul);
-    mainli.appendChild(projectDiv);
-    projectUL.appendChild(mainli);
-    projectUL.appendChild(text);
-}
-
-// function createNewListItem(name, details) { short way but not best practice
-//   //const projectUL = document.querySelector('.projects');
-//   const projectList = document.getElementById('projectList'); // this is where i need to append the content of the create project form
-//   if(projectHTMLCheckbox.checked === false) {
-//     document.querySelector('.html').classList.add('hidden');
-//   };
-
-//   let newHTML = `
-//   <li class="project">
-//     <div class="project-header flex">
-//       <h3 class="project-name">${name}</h3>
-//       <img class="plus-icon pointer" src="icons/plus-icon.svg" alt="Plus Icon Expand Details">
-//       <ul class="project-langs flex">
-//         <li class="project-lang"><img class="html" src="icons/html5.svg" alt="HTML5 Logo"></li>
-//         <li class="project-lang"><img class="css" src="icons/css3.svg" alt="CSS3 Logo"></li>
-//         <li class="project-lang"><img class="js" src="icons/javascript.svg" alt="JavaScript Logo"></li>
-//       </ul>
-//     </div>
-//     <p class="project-info hidden">${details}</p>
-//   </li>
-//   `
-//   projectList.innerHTML += newHTML;
-// }
-
-addProjectButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  let name = document.querySelector('#projectName').value;
-  let details = document.querySelector('#projectDetails').value;
-
-  createNewListItem(name, details);
-});
-
-// addProjectButton.addEventListener('click', (e) => {
-//   e.preventDefault();
-//   const projectNameInput = document.getElementById('projectName');
-//   //let name = document.querySelector('#projectName').value;
-//   const projectDetailsInput = document.getElementById('projectDetails');
-//  //let details = document.querySelector('#projectDetails').value;
-//   createNewListItem(name, details);
-// });
+const addProjectButton = document.getElementById('addProjectButton');
 
 // Student Invite form elements
 const studentNameInput = document.getElementById('studentName');
 const studentProjectSelect = document.getElementById('projectSelect');
 const inviteStudentButton = document.getElementById('inviteStudentButton');
 
-//1. Create a function that will take the data from the "Create a Project" form and append to the DOM using the project list `ul` widget.
+function createNewProject() {
+  const projectContainer = document.querySelector('.projects');//Grab the projects container where we will append the li
+  const projectListItem = document.createElement('LI');//create the li to contain the new project
+  projectListItem.classList.add('project');
+  const projectHeader = document.createElement('DIV');//create the container for the header
+  projectHeader.classList ='project-header flex';
+  const projectName = document.createElement('H3');//create the header
+  projectName.classList.add('project-name');
+  projectName.textContent = projectNameInput.value;
+  const expandImg = document.createElement('img');//create the plus icon
+  expandImg.classList = 'plus-icon pointer';
+  expandImg.src = 'icons/plus-icon.svg';
+  expandImg.alt = 'Plus Icon Expand Details';
+  const innerUL = document.createElement('UL')//create inner UL for the langauges
+  innerUL.classList = 'project-langs flex';
+  const htmlLI = document.createElement('li');//create HTML icon
+  htmlLI.classList.add('project-lang');
+  const htmlLIImg = document.createElement('img');
+  htmlLIImg.classList.add('html');
+  htmlLIImg.src = 'icons/html5.svg';
+  htmlLIImg.alt = 'HTML 5 Logo';
+  const cssLI = document.createElement('li');//create css icon
+  cssLI.classList.add('project-lang');
+  const cssLIImg = document.createElement('img');
+  cssLIImg.classList.add('css');
+  cssLIImg.src = 'icons/css3.svg';
+  cssLIImg.alt = 'CSS3 Logo'
+  const jsLI = document.createElement('li');//create js icon
+  jsLI.classList.add('project-lang');
+  const jsLIImg = document.createElement('img');
+  jsLIImg.classList.add('js');
+  jsLIImg.src = 'icons/javascript.svg';
+  jsLIImg.alt = 'JavaScript Logo';
 
+  const projectDetails = document.createElement('P');//create project details text
+  projectDetails.classList = 'project-info hidden';
+  projectDetails.textContent = projectDetailsInput.value;
+  //Append items to create project
+  htmlLI.appendChild(htmlLIImg);
+  cssLI.appendChild(cssLIImg);
+  jsLI.appendChild(jsLIImg);
 
+  innerUL.appendChild(htmlLI);
+  innerUL.appendChild(cssLI);
+  innerUL.appendChild(jsLI);
 
+  projectHeader.appendChild(projectName);
+  projectHeader.appendChild(expandImg);
+  projectHeader.appendChild(innerUL);
+  projectListItem.appendChild(projectHeader);
+  projectContainer.appendChild(projectListItem);
+  projectContainer.appendChild(projectDetails);
+
+}
 
 // Event Listeners
-
-
+addProjectButton.addEventListener('click', e => { //works however need to find a way to only append selected languages. If else statements
+  e.preventDefault();
+  createNewProject();
+});
 
 projectList.addEventListener('click', e => {});
 
 inviteStudentButton.addEventListener('click', e => {});
 
 closeIcon.addEventListener('click', () => {});
-
-//element.textContent = 'content';
-
-/* from net, this works but needs altering to get the value of the input
-// create new option element
-var opt = document.createElement('option');
-
-// create text node to add to option element (opt)
-opt.appendChild( document.createTextNode('New Option Text') );
-
-// set value property of opt
-opt.value = 'option value';
-
-// add opt to end of select box (sel)
-sel.appendChild(opt);
-
-My piss poor attempt
-let projectOption = document.createTextNode(projectNameInput.value);
-  var option = document.createElement('option');
-  option.appendChild(projectOption);
-  option.value = '';
-  studentProjectSelect.appendChild(option);
-  */
-
-
-  //function projectName () {
-  // let selectOption = document.createTextNode(projectNameInput.value);
-  // var option = document.createElement('option');
-  // option.appendChild(selectOption);
-  // studentProjectSelect.appendChild(option);
-  // return projectName;
-  // console.log(selectOption);
-//}
-
