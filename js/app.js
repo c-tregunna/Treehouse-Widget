@@ -35,6 +35,7 @@ function createNewProject() {
   expandImg.alt = 'Plus Icon Expand Details';
   const innerUL = document.createElement('UL')//create inner UL for the langauges
   innerUL.classList = 'project-langs flex';
+  //maybe use an if else stament, or even forEach?
   const htmlLI = document.createElement('li');//create HTML icon
   htmlLI.classList.add('project-lang');
   const htmlLIImg = document.createElement('img');
@@ -70,8 +71,9 @@ function createNewProject() {
   projectHeader.appendChild(expandImg);
   projectHeader.appendChild(innerUL);
   projectListItem.appendChild(projectHeader);
+  projectListItem.appendChild(projectDetails);
   projectContainer.appendChild(projectListItem);
-  projectContainer.appendChild(projectDetails);
+
 
 }
 
@@ -79,10 +81,31 @@ function createNewProject() {
 addProjectButton.addEventListener('click', e => { //works however need to find a way to only append selected languages. If else statements
   e.preventDefault();
   createNewProject();
+  projectNameInput.value = '';
+  projectDetailsInput.value = '';
+  if(projectNameInput.value === '' && projectDetailsInput.value === '') {
+    alertMessage.classList.remove('hidden');
+    alertMessage.firstElementChild.firstElementChild.textContent = 'Please add a project name and project details';
+    alertMessage.style.backgroundColor = 'tomato';
+  } else if (projectNameInput.value !== '' && projectDetailsInput.value !== '') {
+    alertMessage.classList.remove('hidden');
+    alertMessage.firstElementChild.firstElementChild.textContent = 'Your project has been added';
+    alertMessage.style.backgroundColor = '#5fcf80';
+  }
+
 });
 
-projectList.addEventListener('click', e => {});
+// this works for the dummy project but not for new projects...why??
+projectList.addEventListener('click', e => {
+const projectInfo = document.querySelector('.project-info');
+  if (e.target.tagName === 'IMG') {
+  projectInfo.classList.toggle('hidden');
+  }
+});
+
 
 inviteStudentButton.addEventListener('click', e => {});
 
-closeIcon.addEventListener('click', () => {});
+closeIcon.addEventListener('click', () => {
+  alertMessage.classList.add('hidden');
+});
