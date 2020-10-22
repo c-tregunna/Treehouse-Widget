@@ -80,26 +80,27 @@ function createNewProject() {
 // Event Listeners
 addProjectButton.addEventListener('click', e => { //works however need to find a way to only append selected languages. If else statements
   e.preventDefault();
-  createNewProject();
-  projectNameInput.value = '';
-  projectDetailsInput.value = '';
-  if(projectNameInput.value === '' && projectDetailsInput.value === '') {
-    alertMessage.classList.remove('hidden');
-    alertMessage.firstElementChild.firstElementChild.textContent = 'Please add a project name and project details';
-    alertMessage.style.backgroundColor = 'tomato';
-  } else if (projectNameInput.value !== '' && projectDetailsInput.value !== '') {
+
+  if (projectNameInput.value !== '' && projectDetailsInput.value !== '') {
     alertMessage.classList.remove('hidden');
     alertMessage.firstElementChild.firstElementChild.textContent = 'Your project has been added';
     alertMessage.style.backgroundColor = '#5fcf80';
+    createNewProject();
+  } else if(projectNameInput.value === '' || projectDetailsInput.value === '') {
+    alertMessage.classList.remove('hidden');
+    alertMessage.firstElementChild.firstElementChild.textContent = 'Please add a project name and project details';
+    alertMessage.style.backgroundColor = 'tomato';
   }
+  projectNameInput.value = '';
+  projectDetailsInput.value = '';
 
 });
 
 // this works for the dummy project but not for new projects...why??
 projectList.addEventListener('click', e => {
-const projectInfo = document.querySelector('.project-info');
   if (e.target.tagName === 'IMG') {
-  projectInfo.classList.toggle('hidden');
+    const projectInfo = e.target.parentElement.parentElement.lastElementChild;
+    projectInfo.classList.toggle('hidden');
   }
 });
 
