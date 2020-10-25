@@ -98,7 +98,7 @@ footer {
 
 .window-options {
   display: none;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 .window-option::before {
   content: "●";

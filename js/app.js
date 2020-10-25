@@ -20,7 +20,7 @@ const studentNameInput = document.getElementById('studentName');
 const studentProjectSelect = document.getElementById('projectSelect');
 const inviteStudentButton = document.getElementById('inviteStudentButton');
 
-function createNewProject() {
+function createNewProject(languages) {
   const projectContainer = document.querySelector('.projects');//Grab the projects container where we will append the li
   const projectListItem = document.createElement('LI');//create the li to contain the new project
   projectListItem.classList.add('project');
@@ -59,13 +59,44 @@ function createNewProject() {
   projectDetails.classList = 'project-info hidden';
   projectDetails.textContent = projectDetailsInput.value;
   //Append items to create project
-  htmlLI.appendChild(htmlLIImg);
-  cssLI.appendChild(cssLIImg);
-  jsLI.appendChild(jsLIImg);
+  //think I need a forEach or for loop here
+  // languages.forEach(language => {
+  //   if (language === projectHTMLCheckbox.checked) {
+  //     htmlLI.appendChild(htmlLIImg);
+  //     innerUL.appendChild(htmlLI);
+  //   }
+  //   else if (language === projectCSSCheckbox.checked) {
+  //     cssLI.appendChild(cssLIImg);
+  //     innerUL.appendChild(cssLI);
+  //   }
+  //   else if (language === projectJSCheckbox.checked) {
+  //     jsLI.appendChild(jsLIImg);
+  //     innerUL.appendChild(jsLI);
+  //   }
+  // })
 
-  innerUL.appendChild(htmlLI);
-  innerUL.appendChild(cssLI);
-  innerUL.appendChild(jsLI);
+    if (projectHTMLCheckbox.checked) {
+      htmlLI.appendChild(htmlLIImg);
+      innerUL.appendChild(htmlLI);
+    } if (projectCSSCheckbox.checked) {
+      cssLI.appendChild(cssLIImg);
+      innerUL.appendChild(cssLI);
+    } if (projectJSCheckbox.checked) {
+      jsLI.appendChild(jsLIImg);
+      innerUL.appendChild(jsLI);
+    }
+
+
+
+      // htmlLI.appendChild(htmlLIImg);
+      // innerUL.appendChild(htmlLI);
+
+      // cssLI.appendChild(cssLIImg);
+      // innerUL.appendChild(cssLI);
+
+      // jsLI.appendChild(jsLIImg);
+      // innerUL.appendChild(jsLI);
+
 
   projectHeader.appendChild(projectName);
   projectHeader.appendChild(expandImg);
@@ -83,13 +114,15 @@ addProjectButton.addEventListener('click', e => { //works however need to find a
 
   if (projectNameInput.value !== '' && projectDetailsInput.value !== '') {
     alertMessage.classList.remove('hidden');
+    alertMessage.classList.add('success');
     alertMessage.firstElementChild.firstElementChild.textContent = 'Your project has been added';
-    alertMessage.style.backgroundColor = '#5fcf80';
+    // alertMessage.style.backgroundColor = '#5fcf80';
     createNewProject();
   } else if(projectNameInput.value === '' || projectDetailsInput.value === '') {
     alertMessage.classList.remove('hidden');
+    alertMessage.classList.add('warning');
     alertMessage.firstElementChild.firstElementChild.textContent = 'Please add a project name and project details';
-    alertMessage.style.backgroundColor = 'tomato';
+    // alertMessage.style.backgroundColor = '#cf5f5f';
   }
   projectNameInput.value = '';
   projectDetailsInput.value = '';
@@ -99,14 +132,15 @@ addProjectButton.addEventListener('click', e => { //works however need to find a
 // this works for the dummy project but not for new projects...why??
 projectList.addEventListener('click', e => {
   if (e.target.tagName === 'IMG') {
-    const projectInfo = e.target.parentElement.parentElement.lastElementChild;
+    const projectInfo = e.target.parentElement.parentElement.lastElementChild;//traversing up from the img(e) to the project info for the specific targetted image
     projectInfo.classList.toggle('hidden');
   }
 });
 
 
 inviteStudentButton.addEventListener('click', e => {});
-
-closeIcon.addEventListener('click', () => {
+  closeIcon.addEventListener('click', () => {
   alertMessage.classList.add('hidden');
+  alertMessage.classList.remove('success');
+  alertMessage.classList.remove('warning');
 });
