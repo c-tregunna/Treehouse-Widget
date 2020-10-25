@@ -80,14 +80,17 @@ function createNewProject() {
 
 }
 
+//To add project to select drop down
 function projectSelect() {
-  const projectOption = document.createElement('OPTION');
-  const projectSelectName = document.createTextNode('projectNameInput.value');
-  projectOption.appendChild(projectSelectName);
-  studentProjectSelect.appendChild(projectOption);
+  studentProjectSelect.innerHTML += `<option>${projectNameInput.value}</option>`;
+
+  // const projectOption = document.createElement('OPTION');
+  // const projectSelectName = document.createTextNode('projectNameInput.value');
+  // projectOption.appendChild(projectSelectName);
+  // studentProjectSelect.appendChild(projectOption);
 }
 
-function topFunction() {
+function topFunction() { // when click page goes to top. Taken from W3cschool
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
