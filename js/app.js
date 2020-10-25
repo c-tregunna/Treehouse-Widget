@@ -20,7 +20,7 @@ const studentNameInput = document.getElementById('studentName');
 const studentProjectSelect = document.getElementById('projectSelect');
 const inviteStudentButton = document.getElementById('inviteStudentButton');
 
-function createNewProject(languages) {
+function createNewProject() {
   const projectContainer = document.querySelector('.projects');//Grab the projects container where we will append the li
   const projectListItem = document.createElement('LI');//create the li to contain the new project
   projectListItem.classList.add('project');
@@ -80,7 +80,20 @@ function createNewProject(languages) {
 
 }
 
+function projectSelect() {
+  const projectOption = document.createElement('OPTION');
+  const projectSelectName = document.createTextNode('projectNameInput.value');
+  projectOption.appendChild(projectSelectName);
+  studentProjectSelect.appendChild(projectOption);
+}
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
 // Event Listeners
+//when you click this you are taken to top of page to show alert
 addProjectButton.addEventListener('click', e => { //works however need to find a way to only append selected languages. If else statements
   e.preventDefault();
 
@@ -101,6 +114,10 @@ addProjectButton.addEventListener('click', e => { //works however need to find a
   projectHTMLCheckbox.checked = true;
   projectCSSCheckbox.checked = true;
   projectJSCheckbox.checked = false;
+
+  projectSelect()
+
+  topFunction()
 
 });
 
