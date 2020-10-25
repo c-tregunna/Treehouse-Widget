@@ -81,10 +81,15 @@ function createNewProject() {
 }
 
 //To add project to select drop down
-function projectSelect() {
-  studentProjectSelect.innerHTML += `<option>${projectNameInput.value}</option>`;
+function projectSelect(projectName) {
+  const projectOption = document.createElement('OPTION');
+  projectOption.text = projectName;
+  studentProjectSelect.add(projectOption);
 
-  // const projectOption = document.createElement('OPTION');
+
+
+  // studentProjectSelect.innerHTML += `<option>${projectNameInput.value}</option>`;
+
   // const projectSelectName = document.createTextNode('projectNameInput.value');
   // projectOption.appendChild(projectSelectName);
   // studentProjectSelect.appendChild(projectOption);
