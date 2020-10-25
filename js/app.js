@@ -58,22 +58,6 @@ function createNewProject(languages) {
   const projectDetails = document.createElement('P');//create project details text
   projectDetails.classList = 'project-info hidden';
   projectDetails.textContent = projectDetailsInput.value;
-  //Append items to create project
-  //think I need a forEach or for loop here
-  // languages.forEach(language => {
-  //   if (language === projectHTMLCheckbox.checked) {
-  //     htmlLI.appendChild(htmlLIImg);
-  //     innerUL.appendChild(htmlLI);
-  //   }
-  //   else if (language === projectCSSCheckbox.checked) {
-  //     cssLI.appendChild(cssLIImg);
-  //     innerUL.appendChild(cssLI);
-  //   }
-  //   else if (language === projectJSCheckbox.checked) {
-  //     jsLI.appendChild(jsLIImg);
-  //     innerUL.appendChild(jsLI);
-  //   }
-  // })
 
     if (projectHTMLCheckbox.checked) {
       htmlLI.appendChild(htmlLIImg);
@@ -85,18 +69,6 @@ function createNewProject(languages) {
       jsLI.appendChild(jsLIImg);
       innerUL.appendChild(jsLI);
     }
-
-
-
-      // htmlLI.appendChild(htmlLIImg);
-      // innerUL.appendChild(htmlLI);
-
-      // cssLI.appendChild(cssLIImg);
-      // innerUL.appendChild(cssLI);
-
-      // jsLI.appendChild(jsLIImg);
-      // innerUL.appendChild(jsLI);
-
 
   projectHeader.appendChild(projectName);
   projectHeader.appendChild(expandImg);
@@ -126,6 +98,9 @@ addProjectButton.addEventListener('click', e => { //works however need to find a
   }
   projectNameInput.value = '';
   projectDetailsInput.value = '';
+  projectHTMLCheckbox.checked = true;
+  projectCSSCheckbox.checked = true;
+  projectJSCheckbox.checked = false;
 
 });
 
