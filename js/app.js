@@ -9,6 +9,7 @@ const projectList = document.getElementById('projectList');
 
 // Project form elements
 const projectNameInput = document.getElementById('projectName');
+
 const projectHTMLCheckbox = document.getElementById('html');
 const projectCSSCheckbox = document.getElementById('css');
 const projectJSCheckbox = document.getElementById('js');
@@ -81,10 +82,11 @@ function createNewProject() {
 }
 
 //To add project to select drop down
-function projectSelect(projectName) {
+let projectName = projectNameInput.value;
+function projectSelect() {
   const projectOption = document.createElement('OPTION');
   projectOption.text = projectName;
-  studentProjectSelect.add(projectOption);
+  studentProjectSelect.add(projectOption); //returning undefined at the moment
 
 
 
