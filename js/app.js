@@ -30,7 +30,6 @@ function createNewProject() {
   const projectName = document.createElement('H3');//create the header
   projectName.classList.add('project-name');
   projectName.textContent = projectNameInput.value;
-  console.log(projectNameInput.value);
   const expandImg = document.createElement('img');//create the plus icon
   expandImg.classList = 'plus-icon pointer';
   expandImg.src = 'icons/plus-icon.svg';
@@ -79,19 +78,22 @@ function createNewProject() {
   projectListItem.appendChild(projectDetails);
   projectContainer.appendChild(projectListItem);
 
-  console.log(projectName.textContent);
-  return(projectName); //to use in the projectSelect function
+  // console.log(projectName.textContent);
+  // return(projectName.textContent); //to use in the projectSelect function
 
 
 }
 
 //To add project to select drop down
 
-function projectSelect(projectName) {
+function projectSelect() {
+  let projectName = document.querySelector('.project-name').textContent;
+
+  console.log(projectName);//returning the first project only
   const projectOption = document.createElement('OPTION');
 
-  projectOption.text = projectName;
-  studentProjectSelect.add(projectOption); //returning undefined at the moment
+  projectOption.text = projectName;//only showing the first dummy project only
+  studentProjectSelect.add(projectOption);
 
   // const addProjectToSelect = projectName => {
   //   const project = document.createElement('option');
