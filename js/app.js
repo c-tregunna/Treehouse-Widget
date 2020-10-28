@@ -78,9 +78,8 @@ function createNewProject() {
   projectListItem.appendChild(projectDetails);
   projectContainer.appendChild(projectListItem);
 
-  // console.log(projectName.textContent);
-  // return(projectName.textContent); //to use in the projectSelect function
-
+  console.log(projectName.textContent);
+  return(projectName.textContent); //to use in the projectSelect function
 
 }
 
@@ -96,28 +95,7 @@ function projectSelect() {
   });
 }
 
-//   // console.log(projectName);//returning the first project only
-//   const projectOption = document.createElement('OPTION');
 
-//   projectOption.text = name;//only showing the first dummy project only
-//   studentProjectSelect.add(projectOption);
-// }
-//   )
-// }
-
-  // const addProjectToSelect = projectName => {
-  //   const project = document.createElement('option');
-  //   project.text = projectName;
-  //   studentProjectSelect.add(project);
-  // }
-
-
-
-  // studentProjectSelect.innerHTML += `<option>${projectNameInput.value}</option>`;
-
-  // const projectSelectName = document.createTextNode('projectNameInput.value');
-  // projectOption.appendChild(projectSelectName);
-  // studentProjectSelect.appendChild(projectOption);
 
 
 function topFunction() { // when click page goes to top. Taken from W3cschool
@@ -134,19 +112,18 @@ addProjectButton.addEventListener('click', e => { //works however need to find a
     alertMessage.classList.remove('hidden');
     alertMessage.classList.add('success');
     alertMessage.firstElementChild.firstElementChild.textContent = 'Your project has been added';
-    // alertMessage.style.backgroundColor = '#5fcf80';
     createNewProject();
   } else if(projectNameInput.value === '' || projectDetailsInput.value === '') {
     alertMessage.classList.remove('hidden');
     alertMessage.classList.add('warning');
     alertMessage.firstElementChild.firstElementChild.textContent = 'Please add a project name and project details';
-    // alertMessage.style.backgroundColor = '#cf5f5f';
   }
   projectNameInput.value = '';
   projectDetailsInput.value = '';
   projectHTMLCheckbox.checked = true;
   projectCSSCheckbox.checked = true;
   projectJSCheckbox.checked = false;
+
 
   projectSelect()
 
@@ -163,8 +140,32 @@ projectList.addEventListener('click', e => {
 });
 
 
-inviteStudentButton.addEventListener('click', e => {});
-  closeIcon.addEventListener('click', () => {
+inviteStudentButton.addEventListener('click', e => {
+  e.preventDefault();
+if(studentNameInput.value !== '') {
+  alertMessage.classList.remove('hidden');
+  alertMessage.classList.add('success');
+  alertMessage.firstElementChild.firstElementChild.textContent = `${studentNameInput.value} had been invited to join the project`;
+
+  //IF WANT TO APPEND THE STUDENT NAME TO PROJECT, BUT WILL NEED TO TIE THIS WITH SELECTING PROJECT. JUST TO SEE IF I CAN
+  // const projectContainer = document.querySelector('.projects');
+  // const projectStudent = document.createElement('DIV');
+  // projectStudent.textContent = studentNameInput.value;
+  // projectContainer.appendChild(projectStudent);
+
+} else if (studentNameInput.value === '') {
+  alertMessage.classList.remove('hidden');
+  alertMessage.classList.add('warning');
+  alertMessage.firstElementChild.firstElementChild.textContent = 'Please add a name of a student to invite to the project';
+}
+
+studentNameInput.value = '';
+topFunction()
+
+});
+
+
+closeIcon.addEventListener('click', () => {
   alertMessage.classList.add('hidden');
   alertMessage.classList.remove('success');
   alertMessage.classList.remove('warning');

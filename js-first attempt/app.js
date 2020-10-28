@@ -172,3 +172,27 @@ let projectOption = document.createTextNode(projectNameInput.value);
   // console.log(selectOption);
 //}
 
+
+
+//   // console.log(projectName);//returning the first project only
+//   const projectOption = document.createElement('OPTION');
+
+//   projectOption.text = name;//only showing the first dummy project only
+//   studentProjectSelect.add(projectOption);
+// }
+//   )
+// }
+
+  // const addProjectToSelect = projectName => {
+  //   const project = document.createElement('option');
+  //   project.text = projectName;
+  //   studentProjectSelect.add(project);
+  // }
+
+
+
+  // studentProjectSelect.innerHTML += `<option>${projectNameInput.value}</option>`;
+
+  // const projectSelectName = document.createTextNode('projectNameInput.value');
+  // projectOption.appendChild(projectSelectName);
+  // studentProjectSelect.appendChild(projectOption);
