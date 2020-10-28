@@ -87,13 +87,23 @@ function createNewProject() {
 //To add project to select drop down
 
 function projectSelect() {
-  let projectName = document.querySelector('.project-name').textContent;
+  let projectName = document.querySelectorAll('.project-name');
+  projectName.forEach((name) => {
+    console.log(name);
+    const projectOption = document.createElement('OPTION');
+    projectOption.text = name.textContent;//only showing the first dummy project only
+    studentProjectSelect.add(projectOption);
+  });
+}
 
-  console.log(projectName);//returning the first project only
-  const projectOption = document.createElement('OPTION');
+//   // console.log(projectName);//returning the first project only
+//   const projectOption = document.createElement('OPTION');
 
-  projectOption.text = projectName;//only showing the first dummy project only
-  studentProjectSelect.add(projectOption);
+//   projectOption.text = name;//only showing the first dummy project only
+//   studentProjectSelect.add(projectOption);
+// }
+//   )
+// }
 
   // const addProjectToSelect = projectName => {
   //   const project = document.createElement('option');
@@ -108,7 +118,7 @@ function projectSelect() {
   // const projectSelectName = document.createTextNode('projectNameInput.value');
   // projectOption.appendChild(projectSelectName);
   // studentProjectSelect.appendChild(projectOption);
-}
+
 
 function topFunction() { // when click page goes to top. Taken from W3cschool
   document.body.scrollTop = 0; // For Safari
