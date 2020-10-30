@@ -21,15 +21,15 @@ const studentNameInput = document.getElementById('studentName');
 const studentProjectSelect = document.getElementById('projectSelect');
 const inviteStudentButton = document.getElementById('inviteStudentButton');
 
-function createNewProject() {
+function createNewProject(name = projectNameInput.value) {
   const projectContainer = document.querySelector('.projects');//Grab the projects container where we will append the li
   const projectListItem = document.createElement('LI');//create the li to contain the new project
   projectListItem.classList.add('project');
   const projectHeader = document.createElement('DIV');//create the container for the header
   projectHeader.classList ='project-header flex';
-  const projectName = document.createElement('H3');//create the header
+  let projectName = document.createElement('H3');//create the header
   projectName.classList.add('project-name');
-  projectName.textContent = projectNameInput.value;
+  projectName.textContent = name;
   const expandImg = document.createElement('img');//create the plus icon
   expandImg.classList = 'plus-icon pointer';
   expandImg.src = 'icons/plus-icon.svg';
@@ -77,23 +77,31 @@ function createNewProject() {
   projectListItem.appendChild(projectHeader);
   projectListItem.appendChild(projectDetails);
   projectContainer.appendChild(projectListItem);
+  projectSelect(name);
 
-  console.log(projectName.textContent);
-  return(projectName.textContent); //to use in the projectSelect function
+  // console.log(projectName.textContent);
+  // return(projectName.textContent); //to use in the projectSelect function
 
 }
 
 //To add project to select drop down
+//adjust this function to just create option and append to the select
+//call this function in the createNewProject()
+// need to add a paramete to createNewPrject() to get the name of the project
+//call the function in the  createNewProject() with parameter name and call createNewProject() in the eventlistener
 
-function projectSelect() {
-  let projectName = document.querySelectorAll('.project-name');
-  projectName.forEach((name) => {
-    console.log(name);
+function projectSelect(projectName) {
+
     const projectOption = document.createElement('OPTION');
-    projectOption.text = name.textContent;//only showing the first dummy project only
+    projectOption.text = projectName;
     studentProjectSelect.add(projectOption);
-  });
-}
+  };
+
+// const addProjectToSelect = projectName => {
+//   const project = document.createElement('option');
+//   project.text = projectName;
+//   studentProjectSelect.add(project);
+// }
 
 
 
@@ -124,14 +132,11 @@ addProjectButton.addEventListener('click', e => { //works however need to find a
   projectCSSCheckbox.checked = true;
   projectJSCheckbox.checked = false;
 
-
-  projectSelect()
-
   topFunction()
 
 });
 
-// this works for the dummy project but not for new projects...why??
+
 projectList.addEventListener('click', e => {
   if (e.target.tagName === 'IMG') {
     const projectInfo = e.target.parentElement.parentElement.lastElementChild;//traversing up from the img(e) to the project info for the specific targetted image
